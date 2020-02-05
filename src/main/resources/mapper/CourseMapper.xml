@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ning.mapper.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.ning.pojo.Course">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="cid" jdbcType="VARCHAR" property="cid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="classify" jdbcType="VARCHAR" property="classify" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="onsole" jdbcType="VARCHAR" property="onsole" />
+    <result column="brief" jdbcType="VARCHAR" property="brief" />
+    <result column="imgurl" jdbcType="VARCHAR" property="imgurl" />
+    <result column="imgbigurl" jdbcType="VARCHAR" property="imgbigurl" />
+    <result column="recommerd" jdbcType="TINYINT" property="recommerd" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="updateuser" jdbcType="VARCHAR" property="updateuser" />
+  </resultMap>
+</mapper>
