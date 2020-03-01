@@ -3,12 +3,10 @@ package com.ning.controller;
 import java.util.Iterator;
 import java.util.List;
 
+import com.ning.pojo.CourseUserZan;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ning.pojo.Course;
 import com.ning.pojo.CourseSort;
@@ -22,6 +20,7 @@ import com.ning.utils.JSONResult;
 public class CourseController {
 	@Autowired
 	private CourseService courseService;
+
 	
 	/**
 	 * 返回所有的课程第一菜单
@@ -41,7 +40,7 @@ public class CourseController {
 	}
 	/**
 	 * 查询classify等于courSeid的courseList集合
-	 * @param courSeid
+	 * @param csvideoListId
 	 * @return
 	 */
 	@PostMapping("/queryVideoLists")
@@ -59,4 +58,59 @@ public class CourseController {
 		List<CourseZj> result=courseService.queryCourseZjListBycourseId(courseId);
 		return JSONResult.ok(result);
 	}
+
+	/**
+	 * 根据课程的id查询课程简介信息
+	 * @param courseId
+	 * @return
+	 */
+	@PostMapping("/querycourse")
+	public JSONResult querycourse(String courseId) {
+		List<Course> result=courseService.queryCourseBycourseId(courseId);
+		return JSONResult.ok(result);
+	}
+
+	/**
+	 * 查询最新发布的三门好课
+	 * @return
+	 */
+	@PostMapping("/queryThreeCoursesByTime")
+	public JSONResult queryThreeCoursesByTime() {
+		List<Course> result=courseService.queryThreeCoursesByTime();
+		return JSONResult.ok(result);
+	}
+
+	/**
+	 * 查询用户是否点赞
+	 * @param courseUserZan
+	 * @return
+	 */
+	@PostMapping("/querycourseZ")
+	public JSONResult querycourseZ(@RequestBody CourseUserZan courseUserZan) {
+		boolean result=courseService.querycourseUserZanBycourseIdAndUserId(courseUserZan);
+		return JSONResult.ok(result);
+	}
+
+    /**
+     * 添加点赞
+     * @param courseUserZan
+     * @return
+     */
+	@PostMapping("/addzan")
+	public JSONResult addzan(@RequestBody CourseUserZan courseUserZan) {
+		boolean result=courseService.addcourseUserZan(courseUserZan);
+		return JSONResult.ok(result);
+	}
+
+    /**
+     * 取消点赞
+     * @param courseUserZan
+     * @return
+     */
+    @PostMapping("/delzan")
+    public JSONResult delzan(@RequestBody CourseUserZan courseUserZan) {
+        boolean result=courseService.delcourseUserZan(courseUserZan);
+        return JSONResult.ok(result);
+    }
+
 }

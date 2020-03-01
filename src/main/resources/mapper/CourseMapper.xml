@@ -20,4 +20,8 @@
     <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
     <result column="updateuser" jdbcType="VARCHAR" property="updateuser" />
   </resultMap>
+  <select id="queryThreeCoursesByTime" resultType="com.ning.pojo.Course">
+        select * from course t ORDER BY t.createtime DESC LIMIT 0,3
+  </select>
+
 </mapper>

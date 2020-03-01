@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ning.pojo.Course;
 import com.ning.pojo.CourseSort;
+import com.ning.pojo.CourseUserZan;
 import com.ning.pojo.CourseZj;
 
 public interface CourseService {
@@ -24,6 +25,38 @@ public interface CourseService {
 	 * @return
 	 */
 	public List<CourseZj> queryCourseZjListBycourseId(String courseId);
-	
-	
+
+	/**
+	 * 根据课程的id查询课程简介信息
+	 * @param courseId
+	 * @return
+	 */
+    List<Course> queryCourseBycourseId(String courseId);
+
+	/**
+	 * 查询最新发布的三门好课
+	 * @return
+	 */
+    List<Course> queryThreeCoursesByTime();
+
+	/**
+	 * 查询用户是否点赞
+	 * @param courseUserZan
+	 * @return
+	 */
+	boolean querycourseUserZanBycourseIdAndUserId(CourseUserZan courseUserZan);
+
+    /**
+     * 添加点赞
+     * @param courseUserZan
+     * @return
+     */
+	boolean addcourseUserZan(CourseUserZan courseUserZan);
+
+    /**
+     * 取消点赞
+     * @param courseUserZan
+     * @return
+     */
+    boolean delcourseUserZan(CourseUserZan courseUserZan);
 }

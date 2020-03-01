@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ning.mapper.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.ning.pojo.Comment">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="commentId" jdbcType="VARCHAR" property="commentid" />
+    <result column="commentusernameId" jdbcType="VARCHAR" property="commentusernameid" />
+    <result column="commentcontent" jdbcType="VARCHAR" property="commentcontent" />
+    <result column="commentTime" jdbcType="TIMESTAMP" property="commenttime" />
+    <result column="commentCourseId" jdbcType="VARCHAR" property="commentcourseid" />
+    <result column="commentDZ" jdbcType="VARCHAR" property="commentdz" />
+    <result column="commentStatus" jdbcType="BIT" property="commentstatus" />
+    <result column="commentusername" jdbcType="VARCHAR" property="commentusername" />
+  </resultMap>
+</mapper>

@@ -1,17 +1,16 @@
 package com.ning.service.course.impl;
 
+import java.util.Date;
 import java.util.List;
 
+import com.ning.mapper.CourseUserZanMapper;
+import com.ning.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ning.mapper.CourseMapper;
 import com.ning.mapper.CourseSortMapper;
 import com.ning.mapper.CourseZjMapper;
-import com.ning.pojo.Course;
-import com.ning.pojo.CourseSort;
-import com.ning.pojo.CourseZj;
-import com.ning.pojo.User;
 
 import com.ning.service.course.CourseService;
 
@@ -25,6 +24,8 @@ public class CourseServiceImpl implements CourseService {
     private CourseMapper courseMapper;
     @Autowired
     private CourseZjMapper courseZjMapper;
+    @Autowired
+	private CourseUserZanMapper courseUserZanMapper;
 	@Override
 	public List<CourseSort> queryfirstCode(int type) {
 		Example courseSortExample=new Example(CourseSort.class);
@@ -53,4 +54,54 @@ public class CourseServiceImpl implements CourseService {
 		List<CourseZj> result=courseZjMapper.selectByExample(courseZJExample);
 		return result;
 	}
+
+	@Override
+	public List<Course> queryCourseBycourseId(String courseId) {
+		Example courseExample=new Example(Course.class);
+		Criteria criteria=courseExample.createCriteria();
+		criteria.andLike("cid", courseId);
+		List<Course> result=courseMapper.selectByExample(courseExample);
+		return result;
+	}
+
+	@Override
+	public List<Course> queryThreeCoursesByTime() {
+		List<Course> result=courseMapper.queryThreeCoursesByTime();
+		return result;
+	}
+
+	@Override
+	public boolean querycourseUserZanBycourseIdAndUserId(CourseUserZan courseUserZan) {
+		Example CourseUserZanExample=new Example(CourseUserZan.class);
+		Criteria criteria=CourseUserZanExample.createCriteria();
+		criteria.andLike("courseid", courseUserZan.getCourseid());
+		criteria.andLike("userid", courseUserZan.getUserid());
+		List<CourseUserZan> courseUserZans=courseUserZanMapper.selectByExample(CourseUserZanExample);
+
+		if(courseUserZans.size()>0)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean addcourseUserZan(CourseUserZan courseUserZan) {
+		courseUserZan.setCreatetime(new Date());
+		courseUserZanMapper.insert(courseUserZan);
+		return true;
+	}
+
+    @Override
+    public boolean delcourseUserZan(CourseUserZan courseUserZan) {
+        Example CourseUserZanExample=new Example(CourseUserZan.class);
+        Criteria criteria=CourseUserZanExample.createCriteria();
+        criteria.andLike("courseid", courseUserZan.getCourseid());
+        criteria.andLike("userid", courseUserZan.getUserid());
+	    int result=courseUserZanMapper.deleteByExample(CourseUserZanExample);
+
+	    if(result==1)
+        return true;
+	    else
+	    return false;
+    }
 }
