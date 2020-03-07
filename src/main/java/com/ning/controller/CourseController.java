@@ -81,6 +81,27 @@ public class CourseController {
 	}
 
 	/**
+	 * 查询最多赞的三门好课
+	 * @param
+	 * @return
+	 */
+	@PostMapping("/queryThreeCoursesByZ")
+	public JSONResult queryThreeCoursesByZ() {
+		List<Course> result=courseService.queryThreeCoursesByZ();
+		return JSONResult.ok(result);
+	}
+
+	/**
+	 * 查询最关注的三门好课
+	 * @return
+	 */
+	@PostMapping("/queryThreeCoursesByGZ")
+	public JSONResult queryThreeCoursesByGZ() {
+		List<Course> result=courseService.queryThreeCoursesByGZ();
+		return JSONResult.ok(result);
+	}
+
+	/**
 	 * 查询用户是否点赞
 	 * @param courseUserZan
 	 * @return
@@ -90,6 +111,7 @@ public class CourseController {
 		boolean result=courseService.querycourseUserZanBycourseIdAndUserId(courseUserZan);
 		return JSONResult.ok(result);
 	}
+
 
     /**
      * 添加点赞
@@ -112,5 +134,8 @@ public class CourseController {
         boolean result=courseService.delcourseUserZan(courseUserZan);
         return JSONResult.ok(result);
     }
+
+
+
 
 }

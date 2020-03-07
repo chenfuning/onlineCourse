@@ -40,6 +40,17 @@ public interface CourseService {
     List<Course> queryThreeCoursesByTime();
 
 	/**
+	 * 查询最新赞的三门好课
+	 * @return
+	 */
+	List<Course> queryThreeCoursesByZ();
+	/**
+	 * 取消关注
+	 * @param courseUserZan
+	 * @return
+	 */
+	List<Course> queryThreeCoursesByGZ();
+	/**
 	 * 查询用户是否点赞
 	 * @param courseUserZan
 	 * @return
@@ -59,4 +70,6 @@ public interface CourseService {
      * @return
      */
     boolean delcourseUserZan(CourseUserZan courseUserZan);
+
+
 }

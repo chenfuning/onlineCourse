@@ -1,5 +1,6 @@
 package com.ning.service.course.impl;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -52,6 +53,8 @@ public class CourseServiceImpl implements CourseService {
 		Criteria criteria=courseZJExample.createCriteria();
 		criteria.andLike("courseId", courseId);
 		List<CourseZj> result=courseZjMapper.selectByExample(courseZJExample);
+		//结果根据sort排序
+		result.sort(Comparator.comparing(CourseZj::getSort));
 		return result;
 	}
 
@@ -67,6 +70,18 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<Course> queryThreeCoursesByTime() {
 		List<Course> result=courseMapper.queryThreeCoursesByTime();
+		return result;
+	}
+
+	@Override
+	public List<Course> queryThreeCoursesByZ() {
+		List<Course> result=courseMapper.queryThreeCoursesByDZ();
+		return result;
+	}
+
+	@Override
+	public List<Course> queryThreeCoursesByGZ() {
+		List<Course> result=courseMapper.queryThreeCoursesByGZ();
 		return result;
 	}
 

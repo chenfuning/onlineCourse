@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ning.mapper.CourseUserStudyMapper">
+  <resultMap id="BaseResultMap" type="com.ning.pojo.CourseUserStudy">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="courseId" jdbcType="VARCHAR" property="courseid" />
+    <id column="userId" jdbcType="VARCHAR" property="userid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="studyzhang" jdbcType="VARCHAR" property="studyzhang" />
+    <result column="studyjie" jdbcType="VARCHAR" property="studyjie" />
+    <result column="studytoTime" jdbcType="VARCHAR" property="studytotime" />
+    <result column="studybz" jdbcType="VARCHAR" property="studybz" />
+  </resultMap>
+</mapper>

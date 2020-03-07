@@ -24,4 +24,18 @@
         select * from course t ORDER BY t.createtime DESC LIMIT 0,3
   </select>
 
+  <select id="queryThreeCoursesByDZ" resultType="com.ning.pojo.Course">
+       SELECT s.* from course s,
+(SELECT COUNT(*) repeats,t.courseid FROM course_user_zan t GROUP BY t.courseid ORDER BY repeats DESC LIMIT 0,3) g
+WHERE s.cid=g.courseid
+LIMIT 0,3
+  </select>
+
+  <select id="queryThreeCoursesByGZ" resultType="com.ning.pojo.Course">
+     SELECT c.* FROM
+    (SELECT COUNT(*) repeats,stu.courseid FROM course_user_study stu GROUP BY stu.courseid ORDER BY repeats DESC LIMIT 0,3) s
+    LEFT  JOIN course c
+    ON s.courseid=c.cid
+    LIMIT 0,3
+  </select>
 </mapper>

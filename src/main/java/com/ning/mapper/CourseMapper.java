@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CourseMapper extends MyMapper<Course> {
     List<Course> queryThreeCoursesByTime();
+    List<Course> queryThreeCoursesByDZ();
+    List<Course> queryThreeCoursesByGZ();
 }
